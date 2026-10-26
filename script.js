@@ -2,6 +2,8 @@
 //Selecting Elements
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
+const name0El = document.getElementById('name--0');
+const name1El = document.getElementById('name--1');
 const score0El = document.querySelector('#score--0');
 const score1El = document.getElementById('score--1');
 const currentScore0El = document.getElementById('current--0');
@@ -19,9 +21,10 @@ const init = function () {
   activePlayer = 0;
   playing = true;
   diceEl.classList.add('hidden');
-  document
-    .querySelector(`.player--${activePlayer}`)
-    .classList.remove('player--winner');
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  name0El.textContent = 'Player 1';
+  name1El.textContent = 'Player 2';
   document.querySelector('.player--0').classList.add('player--active');
   document.querySelector('.player--1').classList.remove('player--active');
   score0El.textContent = 0;
@@ -72,6 +75,8 @@ btnHold.addEventListener('click', function () {
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
+      document.getElementById(`name--${activePlayer}`).textContent =
+        `Player ${activePlayer + 1} wins!`;
     } else {
       switchPlayer();
     }
